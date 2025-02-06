@@ -87,19 +87,19 @@ switch (monster) {
 }
 
 function printActionMonster(monster_name, message){
-    console.log(`🔹 %cFIGHT %c|%c ${monster_name}%c ${message}`, "color: red", "color: gray", "color: #FF0000; font-size: 14px; font-weight: bold", "color:#FF0000; font-size: 14px; font-weight: bold");
+    console.log(`🔹 %cFIGHT %c|%c ${monster_name}%c ${message}`, "color: red", "color: gray", "color: #FF2424; font-size: 14px; font-weight: bold", "color:#FF2424; font-size: 14px; font-weight: bold");
 }
 
 function printUserAction(message, success){
     if (success)
-        console.log(`🔹 %cFIGHT %c|%c ${message}`, "color: red", "color: gray", "color: green; font-size: 14px; font-weight: bold")
+        console.log(`🔹 %cFIGHT %c|%c ${message}`, "color: red", "color: gray", "color: #24FF27; font-size: 14px; font-weight: bold")
     else
-        console.log(`🔹 %cFIGHT %c|%c ${message}`, "color: red", "color: gray", "color:#FF0000; font-size: 14px; font-weight: bold")
+        console.log(`🔹 %cFIGHT %c|%c ${message}`, "color: red", "color: gray", "color:#FF2424; font-size: 14px; font-weight: bold")
 };
 
 function statistics(){
-    console.log(`🔹 %cSTATS %c|%c ${monster.name}: ${monster.health} HP, ${monster.attack} ATK, ${monster.defense} DEF!`, "color: yellow", "color: gray", "color:#FF0000; font-size: 14px; font-weight: bold");
-    console.log(`🔹 %cSTATS %c|%c ${user.name}: ${user.health} HP, ${user.attack} ATK, ${user.defense} DEF, ${user.potions} PZ`, "color: yellow", "color: gray", "color:green; font-size: 14px; font-weight: bold");
+    console.log(`🔹 %cSTATS %c|%c ${monster.name}: ${monster.health} HP, ${monster.attack} ATK, ${monster.defense} DEF!`, "color: yellow", "color: gray", "color:#FF2424; font-size: 14px; font-weight: bold");
+    console.log(`🔹 %cSTATS %c|%c ${user.name}: ${user.health} HP, ${user.attack} ATK, ${user.defense} DEF, ${user.potions} PZ`, "color: yellow", "color: gray", "color: #24FF27; font-size: 14px; font-weight: bold");
     console.log("")
 }
 
@@ -177,12 +177,12 @@ do {
     }
 
     if (user.health == 0) {
-        console.log(`🔹 %cEND %c|%c ${user.name} è stato sconfitto! Hai perso.`, "color: red", "color: gray", "color:#FF0000; font-size: 14px; font-weight: bold")
+        console.log(`🔹 %cEND %c|%c ${user.name} è stato sconfitto! Hai perso.`, "color: red", "color: gray", "color:#FF2424; font-size: 14px; font-weight: bold")
         fight_over = true
     }
 
     if (monster.health == 0) {
-        console.log(`🔹 %cEND %c|%c ${user.name} è stato sconfitto! Hai vinto!`, "color: red", "color: gray", "color: green; font-size: 14px; font-weight: bold")
+        console.log(`🔹 %cEND %c|%c ${user.name} è stato sconfitto! Hai vinto!`, "color: red", "color: gray", "color: #24FF27; font-size: 14px; font-weight: bold")
         fight_over = true
     }
 
