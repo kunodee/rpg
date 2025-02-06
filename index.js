@@ -8,7 +8,7 @@ function random_number(min, max) {
 let user = {
     name: prompt("Inserisci il tuo nome da combattente: "),
     health: 100,
-    attack: random_number(15, 22),
+    attack: random_number(19, 25),
     defense: random_number(6, 10),
     potions: 3
 }
@@ -105,6 +105,9 @@ function statistics(){
 
 function attack(){
     let damage = user.attack - monster.defense
+    if (damage < 0) {
+        damage = 0
+    }
     monster.health -= damage
     if (monster.health < 0) {
         monster.health = 0
