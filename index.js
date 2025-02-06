@@ -13,7 +13,7 @@ let user = {
     potions: 3
 }
 
-monsters = ["oblio", "cremisi", "guardiano", "mietitore", "oracolo", "titano", "cavaliereNero"]
+monsters = ["oblio", "guardiano", "mietitore", "oracolo", "titano", "cavaliereNero"]
 
 const oblio = {
     name: "Revenant dell’Oblio",
@@ -87,7 +87,6 @@ switch (monster) {
 }
 
 function statistics(){
-    console.log("")
     console.log(`STATS | ${monster.name}: ${monster.health} HP, ${monster.attack} ATK, ${monster.defense} DEF`)
     console.log(`STATS | ${user.name}: ${user.health} HP, ${user.attack} ATK, ${user.defense} DEF, ${user.potions} PZ`)
     console.log("")
@@ -96,6 +95,9 @@ function statistics(){
 function attack(){
     let damage = user.attack - monster.defense
     monster.health -= damage
+    if (monster.health < 0) {
+        monster.health = 0
+    }
     console.log(`FIGHT | ${user.name} attacca ${monster.name} infliggendo ${damage} danni!`)
 }
 
@@ -103,7 +105,7 @@ function heal(){
     let heal = random_number(10, 35)
     user.health += heal
     user.potions--
-    console.log(`FIGHT | ${user.name} si cura di ${heal} HP!`)
+    console.log(`FIGHT | ${user.name} si cura di ${heal} HP, pozioni rimaste ${user.potions}!`)
 }
 
 function run(){
@@ -119,6 +121,9 @@ function run(){
 function contrattack(){
     let damage = monster.attack - user.defense
     user.health -= damage
+    if (user.health < 0) {
+        user.health = 0
+    }
     console.log(`FIGHT | ${monster.name} contrattacca ${user.name} infliggendo ${damage} danni!`)
 }
 
@@ -152,12 +157,12 @@ do {
         }
     }
 
-    if (user.health <= 0) {
+    if (user.health == 0) {
         console.log(`FINE | ${user.name} è stato sconfitto!`)
         fight_over = true
     }
 
-    if (monster.health <= 0) {
+    if (monster.health == 0) {
         console.log(`FINE | ${monster.name} è stato sconfitto!`)
         fight_over = true
     }
