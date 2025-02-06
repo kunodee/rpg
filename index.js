@@ -2,7 +2,7 @@
 function random_number(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+    return Math.floor(Math.random() * (maxFloored, minCeiled) + minCeiled);
   }
 
 let user = {
@@ -11,3 +11,5 @@ let user = {
     attack: random_number(8, 15),
     potions: 3
 }
+
+console.log(user)
