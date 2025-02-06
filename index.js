@@ -86,9 +86,20 @@ switch (monster) {
         break
 }
 
+function printActionMonster(monster_name, message){
+    console.log(`🔹 %cFIGHT %c|%c ${monster_name}%c ${message}`, "color: red", "color: gray", "color: blue", "color: red");
+}
+
+function printUserAction(message, success){
+    if (success)
+        console.log(`🔹 %cFIGHT %c|%c ${message}`, "color: red", "color: gray", "color: green")
+    else
+        console.log(`🔹 %cFIGHT %c|%c ${message}`, "color: red", "color: gray", "color: red")
+};
+
 function statistics(){
-    console.log(`STATS | ${monster.name}: ${monster.health} HP, ${monster.attack} ATK, ${monster.defense} DEF`)
-    console.log(`STATS | ${user.name}: ${user.health} HP, ${user.attack} ATK, ${user.defense} DEF, ${user.potions} PZ`)
+    console.log(`🔹 %cSTATS %c|%c ${monster.name}: ${monster.health} HP, ${monster.attack} ATK, ${monster.defense} DEF!`, "color: yellow", "color: gray", "color:red");
+    console.log(`🔹 %cSTATS %c|%c ${user.name}: ${user.health} HP, ${user.attack} ATK, ${user.defense} DEF, ${user.potions} PZ`, "color: yellow", "color: gray", "color:green");
     console.log("")
 }
 
@@ -98,23 +109,28 @@ function attack(){
     if (monster.health < 0) {
         monster.health = 0
     }
-    console.log(`FIGHT | ${user.name} attacca ${monster.name} infliggendo ${damage} danni!`)
+    printUserAction(`${user.name} attacca ${monster.name} infliggendo ${damage} danni!`, true);
 }
 
 function heal(){
     let heal = random_number(10, 35)
+    if (user.potions == 0) {
+        printUserAction(`${user.name} non ha più pozioni!`, false);
+        return
+    }
     user.health += heal
     user.potions--
-    console.log(`FIGHT | ${user.name} si cura di ${heal} HP, pozioni rimaste ${user.potions}!`)
+    printUserAction(`${user.name} si cura di ${heal}hp, pozioni rimaste ${user.potions}!`, true);
 }
 
 function run(){
     let runaway = random_number(0, 100)
     if (runaway <= monster.runaway){
-        console.log(`FIGHT | ${user.name} è riuscito a scappare!`)
+        printUserAction(`${user.name} è riuscito a scappare!`, true)
         fight_over = true
     } else {
-        console.log(`FIGHT | ${user.name} non è riuscito a scappare!`)
+        printUserAction(`${user.name} non è riuscito a scappare!`, false)
+
     }
 }
 
@@ -124,11 +140,11 @@ function contrattack(){
     if (user.health < 0) {
         user.health = 0
     }
-    console.log(`FIGHT | ${monster.name} contrattacca ${user.name} infliggendo ${damage} danni!`)
+    printActionMonster(monster.name, `attacca ${user.name} infliggendo ${damage} danni!`)
 }
 
 console.log("")
-console.log(`FIGHT | ${monster.name} ti ha attaccato!`)
+printActionMonster(monster.name, `è apparso!`)
 statistics()
 
 fight_over = false
@@ -158,17 +174,24 @@ do {
     }
 
     if (user.health == 0) {
-        console.log(`FINE | ${user.name} è stato sconfitto!`)
+        console.log(`🔹 %cEND %c|%c ${user.name} è stato sconfitto! Hai perso.`, "color: red", "color: gray", "color: red")
         fight_over = true
     }
 
     if (monster.health == 0) {
-        console.log(`FINE | ${monster.name} è stato sconfitto!`)
+        console.log(`🔹 %cEND %c|%c ${user.name} è stato sconfitto! Hai vinto!`, "color: red", "color: gray", "color: green")
+        fight_over = true
+    }
+
+    if (action == "esci") {
+        console.log(`🔹 %cEND %c|%c ${user.name} ha abbandonato il combattimento!`, "color: red", "color: gray", "color: yellow")
         fight_over = true
     }
 
     if (!fight_over) {
-        action = prompt("Cosa vuoi fare? (attaccare, curarti, scappare): ")
+        console.log("%c🔹 È il tuo turno! 🔹", "color: yellow; font-weight: bold;");
+        console.log("")
+        action = prompt("Cosa vuoi fare? (attaccare, curarti, scappare, esci): ")
     }
 
 } while (!fight_over)
