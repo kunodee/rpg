@@ -138,7 +138,7 @@ function run(){
 }
 
 function contrattack(){
-    let damage = monster.attack - user.defense
+    let damage = Math.max(0, monster.attack - user.defense)
     user.health -= damage
     if (user.health < 0) {
         user.health = 0
@@ -158,9 +158,7 @@ do {
 
     if (action == "attaccare") {
         attack()
-        if (monster.health > 0) {
-            contrattack()
-        }
+        contrattack()
         statistics()
     }
 
