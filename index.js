@@ -125,3 +125,45 @@ function contrattack(){
 console.log("")
 console.log(`FIGHT | ${monster.name} ti ha attaccato!`)
 statistics()
+
+fight_over = false
+
+let action = ""
+
+do {
+
+    if (action == "attaccare") {
+        attack()
+        contrattack()
+        statistics()
+    }
+
+    if (action == "curarti") {
+        heal()
+        contrattack()
+        statistics()
+    }
+
+    if (action == "scappare") {
+        run()
+        if (!fight_over){
+            contrattack()
+            statistics()
+        }
+    }
+
+    if (user.health <= 0) {
+        console.log(`FINE | ${user.name} è stato sconfitto!`)
+        fight_over = true
+    }
+
+    if (monster.health <= 0) {
+        console.log(`FINE | ${monster.name} è stato sconfitto!`)
+        fight_over = true
+    }
+
+    if (!fight_over) {
+        action = prompt("Cosa vuoi fare? (attaccare, curarti, scappare): ")
+    }
+
+} while (!fight_over)
