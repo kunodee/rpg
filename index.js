@@ -85,3 +85,43 @@ switch (monster) {
         monster = cavaliereNero
         break
 }
+
+function statistics(){
+    console.log("")
+    console.log(`STATS | ${monster.name}: ${monster.health} HP, ${monster.attack} ATK, ${monster.defense} DEF`)
+    console.log(`STATS | ${user.name}: ${user.health} HP, ${user.attack} ATK, ${user.defense} DEF, ${user.potions} PZ`)
+    console.log("")
+}
+
+function attack(){
+    let damage = user.attack - monster.defense
+    monster.health -= damage
+    console.log(`FIGHT | ${user.name} attacca ${monster.name} infliggendo ${damage} danni!`)
+}
+
+function heal(){
+    let heal = random_number(10, 35)
+    user.health += heal
+    user.potions--
+    console.log(`FIGHT | ${user.name} si cura di ${heal} HP!`)
+}
+
+function run(){
+    let runaway = random_number(0, 100)
+    if (runaway <= monster.runaway){
+        console.log(`FIGHT | ${user.name} è riuscito a scappare!`)
+        fight_over = true
+    } else {
+        console.log(`FIGHT | ${user.name} non è riuscito a scappare!`)
+    }
+}
+
+function contrattack(){
+    let damage = monster.attack - user.defense
+    user.health -= damage
+    console.log(`FIGHT | ${monster.name} contrattacca ${user.name} infliggendo ${damage} danni!`)
+}
+
+console.log("")
+console.log(`FIGHT | ${monster.name} ti ha attaccato!`)
+statistics()
