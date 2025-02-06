@@ -13,8 +13,6 @@ let user = {
     potions: 3
 }
 
-monsters = ["oblio", "guardiano", "mietitore", "oracolo", "titano", "cavaliereNero"]
-
 const oblio = {
     name: "Revenant dell’Oblio",
     health: random_number(120, 180),
@@ -63,28 +61,9 @@ const cavaliereNero = {
     runaway: 25
 };
 
-let monster = monsters[random_number(0, monsters.length - 1)]
+monsters = [oblio, guardiano, mietitore, oracolo, titano, cavaliereNero]
 
-switch (monster) {
-    case "oblio":
-        monster = oblio
-        break
-    case "guardiano":
-        monster = guardiano
-        break
-    case "mietitore":
-        monster = mietitore
-        break
-    case "oracolo":
-        monster = oracolo
-        break
-    case "titano":
-        monster = titano
-        break
-    case "cavaliereNero":
-        monster = cavaliereNero
-        break
-}
+let monster = monsters[random_number(0, monsters.length - 1)]
 
 function printActionMonster(monster_name, message){
     console.log(`🔹 %cFIGHT %c|%c ${monster_name}%c ${message}`, "color: red", "color: gray", "color: #FF2424; font-size: 14px; font-weight: bold", "color:#FF2424; font-size: 14px; font-weight: bold");
