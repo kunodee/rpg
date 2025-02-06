@@ -158,7 +158,9 @@ do {
 
     if (action == "attaccare") {
         attack()
-        contrattack()
+        if (monster.health > 0) {
+            contrattack()
+        }
         statistics()
     }
 
